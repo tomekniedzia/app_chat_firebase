@@ -33,6 +33,9 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        textTheme: TextTheme(
+          headline1: TextStyle(color: Colors.white),
+        ),
       ),
       home: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
