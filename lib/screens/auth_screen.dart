@@ -51,6 +51,8 @@ class _AuthScreenState extends State<AuthScreen> {
 
         await imageReference.putFile(userImage);
 
+        final userImageURL = await imageReference.getDownloadURL();
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(authResult.user.uid)
@@ -58,6 +60,7 @@ class _AuthScreenState extends State<AuthScreen> {
           {
             'username': userName,
             'email': email,
+            'user_image_url': userImageURL,
           },
         );
       }

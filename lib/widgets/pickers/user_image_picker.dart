@@ -20,6 +20,8 @@ class _UserImagePickerState extends State<UserImagePicker> {
     final ImagePicker imagePicker = ImagePicker();
     final XFile pickedImage = await imagePicker.pickImage(
       source: ImageSource.camera,
+      imageQuality: 50,
+      maxWidth: 150,
     ); //#TODO dialog where user can chose if he want use camera or galery
     final File pickedImageFile = File(pickedImage.path);
     setState(() {
