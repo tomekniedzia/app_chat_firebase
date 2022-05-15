@@ -5,6 +5,9 @@ import 'package:image_picker/image_picker.dart';
 
 class UserImagePicker extends StatefulWidget {
   //const UserImagePicker({ Key? key }) : super(key: key);
+  UserImagePicker(this.imagePickFunction);
+
+  final void Function(File pickedImage) imagePickFunction;
 
   @override
   State<UserImagePicker> createState() => _UserImagePickerState();
@@ -18,9 +21,11 @@ class _UserImagePickerState extends State<UserImagePicker> {
     final XFile pickedImage = await imagePicker.pickImage(
       source: ImageSource.camera,
     ); //#TODO dialog where user can chose if he want use camera or galery
+    final File pickedImageFile = File(pickedImage.path);
     setState(() {
-      _pickedImage = File(pickedImage.path);
+      _pickedImage = pickedImageFile;
     });
+    widget.imagePickFunction(pickedImageFile);
   }
 
   @override
